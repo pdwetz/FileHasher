@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FileHasher")]
-[assembly: AssemblyCopyright("Copyright © 2014 Peter Wetzel")]
+[assembly: AssemblyCopyright("Copyright © 2016 Peter Wetzel")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

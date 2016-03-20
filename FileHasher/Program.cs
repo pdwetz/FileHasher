@@ -1,6 +1,6 @@
 ﻿/*
     FileHasher - Simple file hashing console app
-    Copyright (C) 2014 Peter Wetzel
+    Copyright (C) 2016 Peter Wetzel
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,9 +24,12 @@ namespace FileHasher
 {
     class Program
     {
+        private const int BufferSize = 1200000;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("FileHasher   Copyright (C) 2014 Peter Wetzel");
+            Console.WriteLine("FileHasher");
+            Console.WriteLine("Copyright (C) 2016 Peter Wetzel");
             Console.WriteLine("This program comes with ABSOLUTELY NO WARRANTY; for details see license.txt.");
             Console.WriteLine();
             if (args == null || args.Length == 0)
@@ -54,7 +57,7 @@ namespace FileHasher
         {
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("File does not exist: {0}", filePath);
+                Console.WriteLine($"File does not exist: {filePath}");
                 return;
             }
             Console.WriteLine("Calculating...");
@@ -68,12 +71,12 @@ namespace FileHasher
             using (MD5CryptoServiceProvider hasher = new MD5CryptoServiceProvider())
             {
                 byte[] hashvalue;
-                using (var stream = new BufferedStream(File.OpenRead(sFilePath), 1200000))
+                using (var stream = new BufferedStream(File.OpenRead(sFilePath), BufferSize))
                 {
                     await stream.FlushAsync();
                     hashvalue = hasher.ComputeHash(stream);
                 }
-                return System.BitConverter.ToString(hashvalue);
+                return BitConverter.ToString(hashvalue);
             }
         }
     }
